@@ -35,6 +35,9 @@ class Bare(pl.LightningModule):
         text, text_lens = text
         print(text)
         embedded = self.embedding(text)
+        print(f'embedded: {embedded}')
+        print(f'Is embedded a tensor? {torch.is_tensor(embedded)}')
+        print(f'Dimensions of embedded: {embedded.dim()}')
         
         output, hidden = self.rnn(embedded)
         
