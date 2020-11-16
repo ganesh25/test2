@@ -28,7 +28,7 @@ class IMDBDataModule(LightningDataModule):
     def prepare_data(self):
         # Create Fields
         TEXT = Field(tokenize="spacy", include_lengths=True)
-        LABEL = LabelField(dtype=torch.float, is_target=True, unk_token=None)
+        LABEL = LabelField(dtype=torch.float)
 
         if self.preprocessing is not None:
             TEXT = Field(
@@ -47,7 +47,7 @@ class IMDBDataModule(LightningDataModule):
                 IMDB_train,
                 max_size=self.vocab_size,
                 #vectors=self.pretrained,
-                unk_init=torch.Tensor.normal_,
+                #unk_init=torch.Tensor.normal_,
             )
 
             torch.save(TEXT.vocab, Path(self.data_dir) / "TEXT.pt")
@@ -57,7 +57,7 @@ class IMDBDataModule(LightningDataModule):
 
     def setup(self, stage=None):
         self.TEXT = Field(tokenize="spacy", include_lengths=True)
-        self.LABEL = LabelField(dtype=torch.float, is_target=True, unk_token=None)
+        self.LABEL = LabelField(dtype=torch.float)
         self.TEXT.vocab = torch.load(Path(self.data_dir) / "TEXT.pt")
         self.LABEL.vocab = torch.load(Path(self.data_dir) / "LABEL.pt")
 
