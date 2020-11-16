@@ -19,7 +19,7 @@ class Bare(pl.LightningModule):
     """
 
     def __init__(self, hparams, *args, **kwargs):
-        super().__init__(hparams, *args, **kwargs)
+        super().__init__()
 
         self.hparams = hparams
 

@@ -48,8 +48,8 @@ parser.add_argument(
 parser.add_argument(
     "--dropout_rate",
     type=float,
-    default=0.5,
-    help="dropout rate to avoid overfitting, default: 0.5",
+    default=0,
+    help="dropout rate to avoid overfitting, default: 0",
 )
 parser.add_argument(
     "--embed_dim",
@@ -73,12 +73,12 @@ parser.add_argument(
     help="model architecture to be used for training, default: bare",
     choices=["bare"],
 )
-parser.add_argument(
-    "--conv_out_channels",
-    type=int,
-    default=100,
-    help="Conv layer out channels, default: 100",
-)
+#parser.add_argument(
+#    "--conv_out_channels",
+#    type=int,
+#    default=100,
+#    help="Conv layer out channels, default: 100",
+#)
 parser.add_argument(
     "--filter_size", type=int, default=2, help="Default is bigram, set to n-gram"
 )
@@ -115,7 +115,7 @@ if __name__ == "__main__":
 
     print("Creating Model...")
     if hparams.model == "bare":
-        model = Bare(hparams)
+        model = Bare()
     else:
         raise ValueError(
             "The model doesn't exist"
