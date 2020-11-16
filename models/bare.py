@@ -27,6 +27,7 @@ class Bare(pl.LightningModule):
             25000,
             self.hparams.embed_dim,
         )
+        self.dropout = nn.Dropout(self.hparams.dropout_rate)
         self.rnn = nn.RNN(self.hparams.embed_dim, self.hparams.hidden_dim)
         self.fc = nn.Linear(self.hparams.hidden_dim, 1)
 
@@ -39,7 +40,7 @@ class Bare(pl.LightningModule):
         print(f'Is embedded a tensor? {torch.is_tensor(embedded)}')
         print(f'Dimensions of embedded: {embedded.dim()}')
         dropped_embedded = self.dropout(embedded)
-        output, hidden = self.rnn(embedded, hidden)
+        output, hidden = self.rnn(embedded)
         
         assert torch.equal(output[-1,:,:], hidden.squeeze(0))
         

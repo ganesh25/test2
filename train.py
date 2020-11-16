@@ -48,8 +48,8 @@ parser.add_argument(
 parser.add_argument(
     "--dropout_rate",
     type=float,
-    default=0,
-    help="dropout rate to avoid overfitting, default: 0",
+    default=0.5,
+    help="dropout rate to avoid overfitting, default: 0.5",
 )
 parser.add_argument(
     "--embed_dim",
