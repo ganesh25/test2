@@ -38,8 +38,8 @@ class Bare(pl.LightningModule):
         print(f'embedded: {embedded}')
         print(f'Is embedded a tensor? {torch.is_tensor(embedded)}')
         print(f'Dimensions of embedded: {embedded.dim()}')
-        
-        output, hidden = self.rnn(embedded)
+        dropped_embedded = self.dropout(embedded)
+        output, hidden = self.rnn(embedded, hidden)
         
         assert torch.equal(output[-1,:,:], hidden.squeeze(0))
         
