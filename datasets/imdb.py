@@ -46,7 +46,7 @@ class IMDBDataModule(LightningDataModule):
             TEXT.build_vocab(
                 IMDB_train,
                 max_size=self.vocab_size,
-                vectors=self.pretrained,
+                #vectors=self.pretrained,
                 unk_init=torch.Tensor.normal_,
             )
 
