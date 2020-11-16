@@ -115,7 +115,7 @@ if __name__ == "__main__":
 
     print("Creating Model...")
     if hparams.model == "bare":
-        model = Bare()
+        model = Bare(hparams)
     else:
         raise ValueError(
             "The model doesn't exist"
