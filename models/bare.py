@@ -32,6 +32,7 @@ class Bare(pl.LightningModule):
 
 
     def forward(self, text):
+        print(text)
         embedded = self.embedding(text)
         
         output, hidden = self.rnn(embedded)

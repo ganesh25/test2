@@ -15,7 +15,7 @@ class IMDBDataModule(LightningDataModule):
         num_workers: int = 4,
         vocab_size: int = 25_000,
         #pretrained: str = "glove.6B.100d",
-        preprocessing=None,
+        #preprocessing=None,
     ):
         super().__init__()
         self.data_dir = data_dir
@@ -23,17 +23,13 @@ class IMDBDataModule(LightningDataModule):
         self.num_workers = num_workers
         self.vocab_size = vocab_size
         #self.pretrained = pretrained
-        self.preprocessing = preprocessing
+        #self.preprocessing = preprocessing
 
     def prepare_data(self):
         # Create Fields
-        TEXT = Field(tokenize="spacy", include_lengths=True)
+        TEXT = Field(tokenize="spacy")
         LABEL = LabelField(dtype=torch.float)
 
-        if self.preprocessing is not None:
-            TEXT = Field(
-                tokenize="spacy", include_lengths=True, preprocessing=self.preprocessing
-            )
         if not (Path("LABEL.pt").exists() and Path("TEXT.pt").exists()):
             # Download
             IMDB.download(root=self.data_dir)
@@ -56,7 +52,7 @@ class IMDBDataModule(LightningDataModule):
             torch.save(LABEL.vocab, Path(self.data_dir) / "LABEL.pt")
 
     def setup(self, stage=None):
-        self.TEXT = Field(tokenize="spacy", include_lengths=True)
+        self.TEXT = Field(tokenize="spacy")
         self.LABEL = LabelField(dtype=torch.float)
         self.TEXT.vocab = torch.load(Path(self.data_dir) / "TEXT.pt")
         self.LABEL.vocab = torch.load(Path(self.data_dir) / "LABEL.pt")
