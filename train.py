@@ -4,7 +4,7 @@ from pathlib import Path
 import pytorch_lightning as pl
 
 from datasets import *
-from models.bare import Bare
+from models import *
 
 from utils import generate_bigrams, count_parameters, save_vocab
 
@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
     print("Creating Model...")
     if hparams.model == "bare":
-        model = Bare(hparams)
+        model = Bare()
     else:
         raise ValueError(
             "The model doesn't exist select among simple | fast | birnn | cnn"
