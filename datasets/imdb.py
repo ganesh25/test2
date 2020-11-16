@@ -14,7 +14,7 @@ class IMDBDataModule(LightningDataModule):
         batch_size: int = 64,
         num_workers: int = 4,
         vocab_size: int = 25_000,
-        pretrained: str = "glove.6B.100d",
+        #pretrained: str = "glove.6B.100d",
         preprocessing=None,
     ):
         super().__init__()
@@ -22,8 +22,7 @@ class IMDBDataModule(LightningDataModule):
         self.batch_size = batch_size
         self.num_workers = num_workers
         self.vocab_size = vocab_size
-        self.pretrained = pretrained
-
+        #self.pretrained = pretrained
         self.preprocessing = preprocessing
 
     def prepare_data(self):

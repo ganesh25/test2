@@ -36,7 +36,7 @@ if __name__ == "__main__":
     example = (new_text, n_text_len)
 
     ## Line to be changed for model
-    model = CNNClassifier(hparams)
+    model = Bare(hparams)
     ####
 
     output = model(example)
