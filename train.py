@@ -5,6 +5,7 @@ import pytorch_lightning as pl
 
 from datasets import *
 from models import *
+from models.bare import Bare
 
 from utils import generate_bigrams, count_parameters, save_vocab
 
@@ -114,10 +115,10 @@ if __name__ == "__main__":
 
     print("Creating Model...")
     if hparams.model == "bare":
-        model = Bare()
+        model = Bare(hparams)
     else:
         raise ValueError(
-            "The model doesn't exist select among simple | fast | birnn | cnn"
+            "The model doesn't exist"
         )
     hparams.parameters = count_parameters(model)
     print(f"The model has {hparams.parameters:,} trainable parameters")
