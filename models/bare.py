@@ -19,10 +19,12 @@ class Bare(pl.LightningModule):
     """
 
     def __init__(self, hparams, *args, **kwargs):
-        super().__init__()
+        super().__init__(hparams, *args, **kwargs)
+
+        self.hparams = hparams
 
         self.embedding = nn.Embedding(
-            self.hparams.vocab_size,
+            25000,
             self.hparams.embed_dim,
         )
         self.rnn = nn.RNN(self.hparams.embed_dim, self.hparams.hidden_dim)
