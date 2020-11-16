@@ -32,7 +32,6 @@ class Bare(pl.LightningModule):
 
 
     def forward(self, text):
-        print(text.size())
         text, text_lens = text
         print(text)
         embedded = self.embedding(text)
